@@ -2,9 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
-import { Router, RouterProvider, createBrowserRouter } from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
-import { HomePage, ProductPage } from "./pages";
+import { HomePage, ProductPage, SearchedProduct } from "./pages";
 import { ChakraProvider } from "@chakra-ui/react";
 
 const router = createBrowserRouter([
@@ -13,14 +13,22 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: "/",
+        index: true,
         element: <HomePage />,
       },
       {
         path: "/:product/:id",
         element: <ProductPage />,
       },
+      {
+        path: "/search/:search",
+        element: <SearchedProduct />,
+      },
     ],
+  },
+  {
+    path: "*",
+    element: <div>404</div>,
   },
 ]);
 
