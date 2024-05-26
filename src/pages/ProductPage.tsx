@@ -6,15 +6,21 @@ import {
   Image,
   Text,
   Heading,
-  Button,
   VStack,
   HStack,
-  Icon,
   Skeleton,
+  Badge,
+  useToast,
 } from "@chakra-ui/react";
 import { products } from "../assets";
-import { MessageCirclePlus } from "lucide-react";
-import { ShowLink } from "../components";
+import {
+  CartButton,
+  ClickToInquire,
+  ProductImages,
+  ProductNotFound,
+  ShowLink,
+  WishlistButton,
+} from "../components";
 
 interface Product {
   id: number;
@@ -26,12 +32,16 @@ interface Product {
   discounted_price: number;
   main_image: string;
   other_images: string[];
+  offer: string;
+  new_arrival: boolean;
 }
 
 const ProductPage: React.FC = () => {
   const { id, type } = useParams<Record<string, string>>();
   const [product, setProduct] = useState<Product | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+
+  const toast = useToast();
 
   const findProduct = (type: string, id: string) => {
     const temp = products.find(
@@ -46,18 +56,20 @@ const ProductPage: React.FC = () => {
 
   useEffect(() => {
     if (product) {
-      setIsLoading(false);
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1000);
     }
   }, [product]);
 
   return (
     <>
       <Skeleton isLoaded={!isLoading}>
-        <ShowLink title={product?.title as string} type={type as string} />
+        <ShowLink title={product?.title ?? ""} type={type ?? ""} />
       </Skeleton>
       <Flex
         w="100%"
-        h="100vh"
+        minH="100vh"
         justifyContent="center"
         alignItems="center"
         p={4}
@@ -65,26 +77,35 @@ const ProductPage: React.FC = () => {
       >
         {product ? (
           <Flex
-            w={{ base: "100%", md: "70%", lg: "90%" }}
+            w={{ base: "100%", md: "80%", lg: "70%" }}
             bg="white"
             borderRadius="md"
             boxShadow="lg"
             overflow="hidden"
-            direction={{ base: "column", md: "row" }}
+            flexDirection={{ base: "column", md: "row" }}
           >
             <Box
               w={{ base: "100%", md: "50%" }}
-              h={{ base: "300px", md: "500px" }}
+              h={{ base: "300px", md: "600px" }}
               p={4}
             >
-              <Skeleton height="100%" isLoaded={!isLoading}>
+              <Skeleton
+                height="100%"
+                isLoaded={!isLoading}
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+                flexDirection="column"
+                gap={2}
+              >
                 <Image
-                  src={product?.main_image}
-                  alt={product?.title}
+                  src={product.main_image}
+                  alt={product.title}
                   objectFit="contain"
                   w="100%"
-                  h="100%"
+                  h="90%"
                 />
+                <WishlistButton id={product.id} />
               </Skeleton>
             </Box>
             <Flex
@@ -96,88 +117,54 @@ const ProductPage: React.FC = () => {
               <VStack align="start" spacing={4}>
                 <Skeleton isLoaded={!isLoading}>
                   <Heading as="h1" size="lg">
-                    {product?.title}
+                    {product.title}
                   </Heading>
                 </Skeleton>
                 <Skeleton isLoaded={!isLoading}>
-                  <Text fontWeight="bold">Type: {product?.type}</Text>
+                  <Text fontWeight="bold">Type: {product.type}</Text>
                 </Skeleton>
                 <Skeleton isLoaded={!isLoading}>
-                  <Text>{product?.description}</Text>
+                  <Text>{product.description}</Text>
+                </Skeleton>
+                <Skeleton isLoaded={!isLoading} display="flex" gap={2}>
+                  {product.new_arrival && (
+                    <Badge colorScheme="green">New Arrival</Badge>
+                  )}
+                  {product.offer && (
+                    <Badge colorScheme="blue">{product.offer}</Badge>
+                  )}
                 </Skeleton>
                 <Skeleton isLoaded={!isLoading}>
                   <Text fontWeight="bold" color="green.500">
-                    Availability: {product?.availability}
+                    Availability: {product.availability}
                   </Text>
                   <Text fontWeight="bold" textDecoration="line-through">
-                    Original Price: ${product?.original_price}
+                    Original Price: ${product.original_price}
                   </Text>
                   <Text fontWeight="bold" color="red.500">
-                    Discounted Price: ${product?.discounted_price}
+                    Discounted Price: ${product.discounted_price}
                   </Text>
                 </Skeleton>
               </VStack>
               <HStack mt={4} spacing={4}>
-                {product?.other_images.map((image, index) => (
-                  <Skeleton key={index} isLoaded={!isLoading}>
-                    <Image
-                      key={index}
-                      src={image}
-                      alt={`other-image-${index}`}
-                      boxSize="100px"
-                      objectFit="cover"
-                      borderRadius="md"
-                      onClick={() =>
-                        setProduct((prev) => {
-                          if (!prev) return prev;
-                          const newOtherImages = prev.other_images.map(
-                            (img, i) => (i === index ? prev.main_image : img),
-                          );
-                          return {
-                            ...prev,
-                            other_images: newOtherImages,
-                            main_image: image,
-                          };
-                        })
-                      }
-                    />
-                  </Skeleton>
-                ))}
+                <ProductImages
+                  id={product.id}
+                  isLoading={isLoading}
+                  setProduct={setProduct}
+                />
               </HStack>
               <HStack spacing={4} mt={8}>
-                {product?.availability === "In Stock" ? (
-                  <Skeleton isLoaded={!isLoading}>
-                    <Button colorScheme="blue">Add to Cart</Button>
-                  </Skeleton>
-                ) : (
-                  <Skeleton isLoaded={!isLoading}>
-                    <Button colorScheme="red" isDisabled>
-                      Out of Stock
-                    </Button>
-                  </Skeleton>
-                )}
-                <Skeleton isLoaded={!isLoading}>
-                  <Button
-                    colorScheme="green"
-                    onClick={() => {
-                      window.open(
-                        `https://wa.me/918787878787?text=Hey,%20I%20am%20interested%20in%20buying%20${product?.title}%20for%20$${product?.discounted_price}`,
-                        "_blank",
-                      );
-                    }}
-                    display="flex"
-                    alignItems="center"
-                    gap={2}
-                  >
-                    <Icon as={MessageCirclePlus} />
-                    Inquire on Whatsapp
-                  </Button>
-                </Skeleton>
+                <CartButton id={product.id} isLoading={isLoading} />
+                <ClickToInquire
+                  isLoading={isLoading}
+                  title={product.title}
+                  price={product.discounted_price}
+                />
               </HStack>
             </Flex>
           </Flex>
         ) : (
-          <Heading as="h1">Product not found</Heading>
+          <ProductNotFound />
         )}
       </Flex>
     </>
