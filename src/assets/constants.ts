@@ -1,11 +1,19 @@
 const Navitems = [
   {
-    title: "Contact",
-    url: "/contact",
+    title: "Office",
+    url: "/office",
   },
   {
-    title: "Profile",
-    url: "/profile",
+    title: "Stationery",
+    url: "/stationary",
+  },
+  {
+    title: "Fashion",
+    url: "/fashion",
+  },
+  {
+    title: "Home",
+    url: "/home",
   },
 ];
 

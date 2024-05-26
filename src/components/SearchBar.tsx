@@ -23,30 +23,34 @@ const SearchBar = () => {
   }, [search, navigate]);
 
   return (
-    <Box display="flex" alignItems="center" gap={2}>
-      <InputGroup>
-        <InputLeftElement>
-          <Icon as={Search} />
+    <Box display="flex" alignItems="center" gap={2} width="100%" maxW="600px">
+      <InputGroup width="100%">
+        <InputLeftElement pointerEvents="none">
+          <Icon as={Search} color="gray.500" />
         </InputLeftElement>
         <Input
           placeholder="Search..."
-          borderRadius={"full"}
-          bgColor={"gray.900"}
-          size={{
-            base: "sm",
-            md: "md",
-          }}
-          width={{ base: "150px", md: "400px" }}
+          borderRadius="full"
+          bgColor="gray.700"
+          color="white"
+          size="md"
+          width="100%"
           _focus={{
-            borderColor: "gray.900",
-            outline: "none",
+            borderColor: "gray.500",
+            boxShadow: "0 0 0 1px gray.500",
           }}
+          _placeholder={{ color: "gray.400" }}
           onChange={(e) => setSearch(e.target.value)}
           value={search}
         />
         {search !== "" && (
-          <InputRightElement>
-            <Icon as={X} cursor={"pointer"} onClick={() => setSearch("")} />
+          <InputRightElement width={{ base: "auto", md: "auto" }}>
+            <Icon
+              as={X}
+              cursor="pointer"
+              color="gray.500"
+              onClick={() => setSearch("")}
+            />
           </InputRightElement>
         )}
       </InputGroup>

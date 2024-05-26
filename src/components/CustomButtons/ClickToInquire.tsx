@@ -1,5 +1,4 @@
-import { Button, Icon, Skeleton } from "@chakra-ui/react";
-import { MessageCirclePlus } from "lucide-react";
+import { Button, Skeleton } from "@chakra-ui/react";
 
 interface ClickToInquireProps {
   title: string;
@@ -25,7 +24,6 @@ const ClickToInquire = ({ isLoading, title, price }: ClickToInquireProps) => {
         size="md"
         gap={2}
       >
-        <Icon as={MessageCirclePlus} />
         Inquire on Whatsapp
       </Button>
     </Skeleton>

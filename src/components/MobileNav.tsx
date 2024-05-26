@@ -1,35 +1,56 @@
 import {
-  IconButton,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
   Box,
+  IconButton,
+  Drawer,
+  DrawerBody,
+  DrawerHeader,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
+  useDisclosure,
+  VStack,
 } from "@chakra-ui/react";
-import { Navitems } from "../assets";
 import { MenuIcon } from "lucide-react";
+import { Navitems } from "../assets";
 
 const MobileNav = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <Box display={{ base: "block", md: "none" }}>
-      <Menu>
-        <MenuButton
-          as={IconButton}
-          aria-label="Options"
-          icon={<MenuIcon />}
-          bgColor={"transparent"}
-          color={"white"}
-          _hover={{ color: "gray.300" }}
-          _active={{ bgColor: "gray.800" }}
-        />
-        <MenuList color={"white"} bgColor={"gray.800"} border={"none"}>
-          {Navitems.map((item, index) => (
-            <MenuItem key={index} bgColor={"gray.800"}>
-              {item.title}
-            </MenuItem>
-          ))}
-        </MenuList>
-      </Menu>
+      <IconButton
+        aria-label="Open Menu"
+        icon={<MenuIcon />}
+        onClick={onOpen}
+        bgColor={"transparent"}
+        color={"white"}
+        _hover={{ color: "gray.300" }}
+        _active={{ bgColor: "gray.800" }}
+      />
+      <Drawer isOpen={isOpen} placement="left" onClose={onClose}>
+        <DrawerOverlay />
+        <DrawerContent bgColor={"gray.800"} color={"white"}>
+          <DrawerCloseButton />
+          <DrawerHeader borderBottomWidth="1px">Menu</DrawerHeader>
+          <DrawerBody>
+            <VStack align="start" spacing={4}>
+              {Navitems.map((item, index) => (
+                <Box
+                  key={index}
+                  as="a"
+                  href={item.url}
+                  w="full"
+                  py={2}
+                  px={4}
+                  _hover={{ bgColor: "gray.700" }}
+                >
+                  {item.title}
+                </Box>
+              ))}
+            </VStack>
+          </DrawerBody>
+        </DrawerContent>
+      </Drawer>
     </Box>
   );
 };
