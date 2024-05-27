@@ -34,6 +34,10 @@ const router = createBrowserRouter([
         path: "/:type",
         element: <TypePage />,
       },
+      {
+        path: "/not-found",
+        element: <NotFound />,
+      },
     ],
   },
   {

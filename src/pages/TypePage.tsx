@@ -1,5 +1,6 @@
-import { useParams } from "react-router-dom";
+import { useParams, Navigate } from "react-router-dom";
 import { products } from "../assets";
+import { types } from "../assets/constants";
 import { useEffect, useState } from "react";
 import { ProductCard, ProductNotFound } from "../components";
 import { Flex, SimpleGrid } from "@chakra-ui/react";
@@ -20,7 +21,10 @@ interface Product {
 
 const TypePage = () => {
   const { type } = useParams<{ type: string }>();
-  console.log(type);
+
+  if (!types.includes(type.toLowerCase() as string)) {
+    return <Navigate to="/not-found" />;
+  }
 
   const [typeProducts, setTypeProducts] = useState<Product[] | null>(null);
   const [isLoading, setIsLoading] = useState(true);
