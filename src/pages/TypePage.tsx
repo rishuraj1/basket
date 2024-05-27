@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { products } from "../assets";
-import { ProductCard, ProductNotFound, ShowLink } from "../components";
 import { useEffect, useState } from "react";
+import { ProductCard, ProductNotFound } from "../components";
 import { Flex, SimpleGrid } from "@chakra-ui/react";
 
 interface Product {
@@ -18,41 +18,34 @@ interface Product {
   new_arrival: boolean;
 }
 
-const SearchedProduct = () => {
-  const { search = "" } = useParams<{ search: string }>();
-  console.log(search);
+const TypePage = () => {
+  const { type } = useParams<{ type: string }>();
+  console.log(type);
 
-  const [searchProducts, setSearchProducts] = useState<Product[] | null>(null);
+  const [typeProducts, setTypeProducts] = useState<Product[] | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const searchedProducts = () => {
+  const productsOfType = () => {
     const data = products.filter(
-      (product) =>
-        product.title.toLowerCase().includes(search.toLowerCase()) ||
-        product.description.toLowerCase().includes(search.toLowerCase()) ||
-        product.type.toLowerCase().includes(search.toLowerCase()),
+      (product) => product.type.toLowerCase() === type.toLowerCase(),
     );
-    setSearchProducts(data as Product[] | null);
+    setTypeProducts(data as Product[] | null);
   };
 
   useEffect(() => {
-    searchedProducts();
-  }, [search]);
+    productsOfType();
+  }, [type]);
 
   useEffect(() => {
-    if (searchProducts) {
+    if (typeProducts) {
       setTimeout(() => {
         setIsLoading(false);
       }, 1000);
     }
-  }, [searchProducts]);
+  }, [typeProducts]);
 
-  if (searchProducts === null || searchProducts.length === 0) {
-    return (
-      <Flex direction="column" align="center" height={"100%"} marginBottom={2}>
-        <ProductNotFound isLoading={isLoading} />
-      </Flex>
-    );
+  if (typeProducts === null || typeProducts.length === 0) {
+    return <ProductNotFound />;
   }
 
   return (
@@ -63,7 +56,7 @@ const SearchedProduct = () => {
         mt={8}
         mb={8}
       >
-        {searchProducts.map((product) => (
+        {typeProducts.map((product) => (
           <ProductCard key={product?.id} data={product} isLoading={isLoading} />
         ))}
       </SimpleGrid>
@@ -71,4 +64,4 @@ const SearchedProduct = () => {
   );
 };
 
-export default SearchedProduct;
+export default TypePage;

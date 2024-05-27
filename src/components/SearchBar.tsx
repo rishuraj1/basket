@@ -23,7 +23,13 @@ const SearchBar = () => {
   }, [search, navigate]);
 
   return (
-    <Box display="flex" alignItems="center" gap={2} width="100%" maxW="600px">
+    <Box
+      display="flex"
+      alignItems="center"
+      gap={2}
+      width={{ md: "50%", lg: "100%" }}
+      maxW="600px"
+    >
       <InputGroup width="100%">
         <InputLeftElement pointerEvents="none">
           <Icon as={Search} color="gray.500" />

@@ -68,7 +68,12 @@ const Cart = () => {
   }, [cartItems]);
 
   return (
-    <Tooltip label="Cart" aria-label="Cart" placement="bottom">
+    <Tooltip
+      label="Cart"
+      aria-label="Cart"
+      placement="bottom"
+      display={{ base: "none", md: "flex" }}
+    >
       <Box display={{ base: "block", md: "flex" }}>
         <IconButton
           aria-label="Cart"
