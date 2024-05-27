@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { products } from "../assets";
-import { ProductCard, ProductNotFound, ShowLink } from "../components";
+import { ProductCard, ProductNotFound } from "../components";
 import { useEffect, useState } from "react";
 import { Flex, SimpleGrid } from "@chakra-ui/react";
 

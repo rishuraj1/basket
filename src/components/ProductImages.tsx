@@ -1,3 +1,4 @@
+import React from "react";
 import { Image, Skeleton } from "@chakra-ui/react";
 import { products } from "../assets";
 
@@ -13,18 +14,20 @@ interface ProductImagesProps {
   setProduct: React.Dispatch<React.SetStateAction<Product | null>>;
 }
 
-const ProductImages = ({ id, isLoading, setProduct }: ProductImagesProps) => {
-  // Find the product by id
+const ProductImages: React.FC<ProductImagesProps> = ({
+  id,
+  isLoading,
+  setProduct,
+}) => {
   const product = products.find((product) => product.id === id);
 
   const changeImage = (image: string, index: number) => {
     setProduct((prev) => {
-      if (!prev) return prev;
+      if (!prev) return null;
 
-      // Swap the main image with the selected other image
-      const newOtherImages = prev.other_images.map((img, i) =>
-        i === index ? prev.main_image : img,
-      );
+      const newOtherImages = [...prev.other_images];
+      newOtherImages[index] = prev.main_image;
+
       return {
         ...prev,
         other_images: newOtherImages,

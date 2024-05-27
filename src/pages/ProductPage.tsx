@@ -40,15 +40,17 @@ const ProductPage: React.FC = () => {
   const [product, setProduct] = useState<Product | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const findProduct = (type: string, id: string) => {
-    const temp = products.find(
-      (product) => product.type === type && product.id === Number(id),
-    );
-    setProduct(temp ?? null);
-  };
-
   useEffect(() => {
-    findProduct(type, id);
+    const findProduct = (type: string, id: string) => {
+      const foundProduct = products.find(
+        (product) => product.type === type && product.id === Number(id),
+      );
+      setProduct((foundProduct as Product) ?? null);
+    };
+
+    if (type && id) {
+      findProduct(type, id);
+    }
   }, [id, type]);
 
   useEffect(() => {
@@ -161,7 +163,7 @@ const ProductPage: React.FC = () => {
             </Flex>
           </Flex>
         ) : (
-          <ProductNotFound />
+          <ProductNotFound isLoading={isLoading} />
         )}
       </Flex>
     </>

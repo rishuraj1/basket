@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Box, Image, IconButton, Skeleton } from "@chakra-ui/react";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import { heroImages } from "../assets/constants";

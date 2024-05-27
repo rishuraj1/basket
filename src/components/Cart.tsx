@@ -12,7 +12,6 @@ import {
   Flex,
   Text,
   Button,
-  Skeleton,
   Tooltip,
 } from "@chakra-ui/react";
 import { ShoppingBag } from "lucide-react";
@@ -20,7 +19,7 @@ import { useEffect, useState } from "react";
 import { products } from "../assets";
 import CartItem from "./CartItem";
 
-interface CartItem {
+interface cartItem {
   id: number;
   qty: number;
 }
@@ -40,7 +39,7 @@ interface Product {
 }
 
 const Cart = () => {
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [cartItems, setCartItems] = useState<cartItem[]>([]);
   const [cartProducts, setCartProducts] = useState<Product[]>([]);
 
   const { isOpen, onOpen, onClose } = useDisclosure();

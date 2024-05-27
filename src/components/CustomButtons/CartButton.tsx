@@ -116,9 +116,7 @@ const CartButton = ({ id, isLoading }: CartButtonProps) => {
         cursor={availability ? "pointer" : "not-allowed"}
         disabled={!availability}
         leftIcon={
-          availability &&
-          inCart &&
-          qty > 0 && (
+          availability && inCart && qty > 0 ? (
             <Icon
               as={Minus}
               onClick={(e) => {
@@ -126,12 +124,12 @@ const CartButton = ({ id, isLoading }: CartButtonProps) => {
                 handleReduceQty();
               }}
             />
+          ) : (
+            <></>
           )
         }
         rightIcon={
-          availability &&
-          inCart &&
-          qty > 0 && (
+          availability && inCart && qty > 0 ? (
             <Icon
               as={Plus}
               onClick={(e) => {
@@ -139,6 +137,8 @@ const CartButton = ({ id, isLoading }: CartButtonProps) => {
                 handleIncreaseQty();
               }}
             />
+          ) : (
+            <></>
           )
         }
       >

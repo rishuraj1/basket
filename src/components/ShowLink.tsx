@@ -1,5 +1,4 @@
 import {
-  Badge,
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,

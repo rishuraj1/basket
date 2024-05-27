@@ -20,7 +20,7 @@ interface Product {
 }
 
 const TypePage = () => {
-  const { type } = useParams<{ type: string }>();
+  const { type = "" } = useParams<{ type?: string }>();
 
   if (!types.includes(type.toLowerCase() as string)) {
     return <Navigate to="/not-found" />;
@@ -49,7 +49,7 @@ const TypePage = () => {
   }, [typeProducts]);
 
   if (typeProducts === null || typeProducts.length === 0) {
-    return <ProductNotFound />;
+    return <ProductNotFound isLoading={isLoading} />;
   }
 
   return (
