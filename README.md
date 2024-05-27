@@ -37,3 +37,14 @@ This project is a responsive React frontend application for displaying a product
 - Chakra UI: Utilized for styling the application.
 
 ## Screenshots
+
+- ![image](https://github.com/rishuraj1/basket/assets/47839626/a24a7366-ef20-4f2c-836c-403df6e964cc)
+- ![image](https://github.com/rishuraj1/basket/assets/47839626/37affab2-dcda-46b1-8c7a-21325722dbf5)
+- ![image](https://github.com/rishuraj1/basket/assets/47839626/a3f033de-b937-426a-8318-a6367937be21)
+- ![image](https://github.com/rishuraj1/basket/assets/47839626/b4cddb0d-bd3e-4615-b697-26788271f773)
+- ![image](https://github.com/rishuraj1/basket/assets/47839626/dcafffd4-08a5-4c59-a265-920321a6e841)
+
+
+
+
+
