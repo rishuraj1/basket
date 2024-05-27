@@ -44,6 +44,18 @@ This project is a responsive React frontend application for displaying a product
 - ![image](https://github.com/rishuraj1/basket/assets/47839626/b4cddb0d-bd3e-4615-b697-26788271f773)
 - ![image](https://github.com/rishuraj1/basket/assets/47839626/dcafffd4-08a5-4c59-a265-920321a6e841)
 
+- ![image](https://github.com/rishuraj1/basket/assets/47839626/3ac0c8ca-85c4-47df-ba26-3ebf3355ea8a)
+- ![image](https://github.com/rishuraj1/basket/assets/47839626/9f727e57-0738-4719-872c-55565e101efc)
+- ![image](https://github.com/rishuraj1/basket/assets/47839626/17a69449-ade0-4419-bd19-043b8847e91a)
+- ![image](https://github.com/rishuraj1/basket/assets/47839626/7b9251bf-13f5-4c9a-94a4-a406e11672a2)
+- ![image](https://github.com/rishuraj1/basket/assets/47839626/fd26870f-2041-4940-9a1c-3d32666ef182)
+- ![image](https://github.com/rishuraj1/basket/assets/47839626/0dfb0416-ba30-46c9-bcda-18c4adc57c63)
+- ![image](https://github.com/rishuraj1/basket/assets/47839626/2331f2a5-acd3-41eb-88ed-df4d1c9c65ca)
+
+
+
+
+
 
 
 
