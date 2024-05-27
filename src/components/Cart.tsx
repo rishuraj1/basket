@@ -9,15 +9,16 @@ import {
   DrawerOverlay,
   useDisclosure,
   Box,
-  Image,
-  Link,
   Flex,
   Text,
   Button,
+  Skeleton,
+  Tooltip,
 } from "@chakra-ui/react";
 import { ShoppingBag } from "lucide-react";
 import { useEffect, useState } from "react";
 import { products } from "../assets";
+import CartItem from "./CartItem";
 
 interface CartItem {
   id: number;
@@ -39,7 +40,7 @@ interface Product {
 }
 
 const Cart = () => {
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [cartProducts, setCartProducts] = useState<Product[]>([]);
 
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -66,96 +67,74 @@ const Cart = () => {
     getCartProducts();
   }, [cartItems]);
 
-  console.log(cartProducts);
-
   return (
-    <Box display={{ base: "block", md: "flex" }}>
-      <IconButton
-        aria-label="Cart"
-        icon={<Icon as={ShoppingBag} />}
-        bgColor="transparent"
-        color="white"
-        _hover={{ color: "gray.300" }}
-        _active={{ bgColor: "gray.800" }}
-        onClick={() => {
-          getCartItems();
-          getCartProducts();
-          onOpen();
-        }}
-      />
-      <Drawer isOpen={isOpen} placement="right" onClose={onClose} size={"xl"}>
-        <DrawerOverlay />
-        <DrawerContent bgColor="gray.800" color="white">
-          <DrawerCloseButton />
-          <DrawerHeader
-            borderBottomWidth="1px"
-            display={"flex"}
-            gap={3}
-            alignItems={"center"}
-          >
-            Cart <Icon as={ShoppingBag} />
-          </DrawerHeader>
-          <DrawerBody>
-            {cartProducts &&
-              cartProducts?.map((product) => (
-                <Box
-                  key={product.id}
-                  display={"flex"}
-                  gap={3}
-                  p={4}
-                  bgColor={"gray.700"}
-                  borderRadius={"md"}
-                  mb={2}
-                >
-                  <Image
-                    src={product?.main_image}
-                    alt={product.title}
-                    width={100}
-                    height={100}
-                    objectFit={"cover"}
-                    borderRadius={"md"}
+    <Tooltip label="Cart" aria-label="Cart" placement="bottom">
+      <Box display={{ base: "block", md: "flex" }}>
+        <IconButton
+          aria-label="Cart"
+          icon={<Icon as={ShoppingBag} />}
+          bgColor="transparent"
+          color="white"
+          _hover={{ color: "gray.300", transform: "scale(1.1)" }}
+          _active={{ bgColor: "gray.800" }}
+          onClick={() => {
+            getCartItems();
+            getCartProducts();
+            onOpen();
+          }}
+        />
+        <Drawer isOpen={isOpen} placement="right" onClose={onClose} size={"xl"}>
+          <DrawerOverlay />
+          <DrawerContent bgColor="gray.800" color="white">
+            <DrawerCloseButton />
+            <DrawerHeader
+              borderBottomWidth="1px"
+              display={"flex"}
+              gap={3}
+              alignItems={"center"}
+            >
+              Cart <Icon as={ShoppingBag} />
+            </DrawerHeader>
+            <DrawerBody>
+              {cartProducts &&
+                cartProducts?.map((product) => (
+                  <CartItem
+                    key={product.id}
+                    product={product}
+                    cartItems={cartItems}
                   />
-                  <Box>
-                    <Box display={"flex"} justifyContent={"space-between"}>
-                      <Link href={`/${product?.type}/${product?.id}`}>
-                        <Box>{product.title}</Box>
-                      </Link>
-                      <Box>{product.discounted_price}</Box>
-                    </Box>
-                    <Box display={"flex"} justifyContent={"space-between"}>
-                      <Box>
-                        Qty:{" "}
-                        {cartItems.find((item) => item.id === product.id)?.qty}
-                      </Box>
-                      <Box>
-                        {product.discounted_price *
-                          cartItems.find((item) => item.id === product.id)?.qty}
-                      </Box>
-                    </Box>
-                  </Box>
-                </Box>
-              ))}
-            {cartProducts.length === 0 && (
-              <Flex
-                justifyContent={"center"}
-                gap={2}
-                alignItems={"center"}
-                height={"100%"}
-                flexDirection={"column"}
-              >
-                <Icon as={ShoppingBag} boxSize={16} />
-                <Text fontSize={"lg"} fontWeight={"bold"} textAlign={"center"}>
-                  Your cart is empty
-                </Text>
-                <Button colorScheme={"blue"} onClick={onClose}>
-                  Continue Shopping
-                </Button>
-              </Flex>
-            )}
-          </DrawerBody>
-        </DrawerContent>
-      </Drawer>
-    </Box>
+                ))}
+              {cartProducts && (
+                <Flex justifyContent={"flex-end"} mt={4}>
+                  <Button colorScheme={"blue"}>Checkout</Button>
+                </Flex>
+              )}
+              {cartProducts.length === 0 && (
+                <Flex
+                  justifyContent={"center"}
+                  gap={2}
+                  alignItems={"center"}
+                  height={"100%"}
+                  flexDirection={"column"}
+                >
+                  <Icon as={ShoppingBag} boxSize={16} />
+                  <Text
+                    fontSize={"lg"}
+                    fontWeight={"bold"}
+                    textAlign={"center"}
+                  >
+                    Your cart is empty
+                  </Text>
+                  <Button colorScheme={"blue"} onClick={onClose}>
+                    Continue Shopping
+                  </Button>
+                </Flex>
+              )}
+            </DrawerBody>
+          </DrawerContent>
+        </Drawer>
+      </Box>
+    </Tooltip>
   );
 };
 

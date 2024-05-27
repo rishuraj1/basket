@@ -106,8 +106,8 @@ const CartButton = ({ id, isLoading }: CartButtonProps) => {
   return (
     <Skeleton isLoaded={!isLoading}>
       <Button
-        colorScheme={availability ? "pink" : "red"}
-        variant="outline"
+        colorScheme={"blue"}
+        variant="solid"
         size="md"
         onClick={() => {
           if (qty === 0) setQty(1);

@@ -10,7 +10,6 @@ import {
   HStack,
   Skeleton,
   Badge,
-  useToast,
 } from "@chakra-ui/react";
 import { products } from "../assets";
 import {
@@ -40,8 +39,6 @@ const ProductPage: React.FC = () => {
   const { id, type } = useParams<Record<string, string>>();
   const [product, setProduct] = useState<Product | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-
-  const toast = useToast();
 
   const findProduct = (type: string, id: string) => {
     const temp = products.find(
