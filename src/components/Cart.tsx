@@ -95,10 +95,22 @@ const Cart = () => {
                     cartItems={cartItems}
                   />
                 ))}
-              {cartProducts && (
-                <Flex justifyContent={"flex-end"} mt={4}>
-                  <Button colorScheme={"blue"}>Checkout</Button>
-                </Flex>
+              {cartProducts.length > 0 && (
+                <Button
+                  colorScheme={"blue"}
+                  onClick={() => {
+                    localStorage.removeItem("cart");
+                    setCartItems([]);
+                    setCartProducts([]);
+                  }}
+                  mr={2}
+                >
+                  Clear Cart
+                </Button>
+              )}
+
+              {cartProducts.length > 0 && (
+                <Button colorScheme={"green"}>Checkout</Button>
               )}
               {cartProducts.length === 0 && (
                 <Flex
