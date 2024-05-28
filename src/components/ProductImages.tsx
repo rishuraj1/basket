@@ -1,12 +1,7 @@
 import React from "react";
 import { Image, Skeleton } from "@chakra-ui/react";
 import { products } from "../assets";
-
-interface Product {
-  id: number;
-  main_image: string;
-  other_images: string[];
-}
+import { Product } from "../types";
 
 interface ProductImagesProps {
   id: number;

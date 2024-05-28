@@ -3,20 +3,7 @@ import { products } from "../assets";
 import { ProductCard, ProductNotFound } from "../components";
 import { useEffect, useState } from "react";
 import { Flex, SimpleGrid } from "@chakra-ui/react";
-
-interface Product {
-  id: number;
-  type: string;
-  title: string;
-  description: string;
-  availability: string;
-  original_price: number;
-  discounted_price: number;
-  main_image: string;
-  other_images: string[];
-  offer: string;
-  new_arrival: boolean;
-}
+import { Product } from "../types";
 
 const SearchedProduct = () => {
   const { search = "" } = useParams<{ search: string }>();

@@ -1,27 +1,9 @@
 import { Box, Image, Link } from "@chakra-ui/react";
-
-interface Product {
-  id: number;
-  type: string;
-  original_price: number;
-  discounted_price: number;
-  availability: string;
-  title: string;
-  description?: string;
-  main_image: string;
-  other_images: string[];
-  offer?: string;
-  new_arrival?: boolean;
-}
-
-interface CartItem {
-  id: number;
-  qty: number;
-}
+import { Product, cartItem } from "../types";
 
 interface CartItemProps {
   product: Product;
-  cartItems: CartItem[];
+  cartItems: cartItem[];
 }
 
 const CartItem = ({ product, cartItems }: CartItemProps) => {

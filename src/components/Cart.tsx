@@ -17,25 +17,12 @@ import {
 import { ShoppingBag } from "lucide-react";
 import { useEffect, useState } from "react";
 import { products } from "../assets";
+import { Product } from "../types";
 import CartItem from "./CartItem";
 
 interface cartItem {
   id: number;
   qty: number;
-}
-
-interface Product {
-  id: number;
-  type: string;
-  original_price: number;
-  discounted_price: number;
-  availability: string;
-  title: string;
-  description?: string;
-  main_image: string;
-  other_images: string[];
-  offer?: string;
-  new_arrival?: boolean;
 }
 
 const Cart = () => {

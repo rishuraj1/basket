@@ -20,20 +20,7 @@ import {
   ShowLink,
   WishlistButton,
 } from "../components";
-
-interface Product {
-  id: number;
-  type: string;
-  title: string;
-  description: string;
-  availability: string;
-  original_price: number;
-  discounted_price: number;
-  main_image: string;
-  other_images: string[];
-  offer: string;
-  new_arrival: boolean;
-}
+import { Product } from "../types";
 
 const ProductPage: React.FC = () => {
   const { id, type } = useParams<Record<string, string>>();

@@ -4,20 +4,7 @@ import { types } from "../assets/constants";
 import { useEffect, useState } from "react";
 import { ProductCard, ProductNotFound } from "../components";
 import { Flex, SimpleGrid } from "@chakra-ui/react";
-
-interface Product {
-  id: number;
-  type: string;
-  title: string;
-  description: string;
-  availability: string;
-  original_price: number;
-  discounted_price: number;
-  main_image: string;
-  other_images: string[];
-  offer: string;
-  new_arrival: boolean;
-}
+import { Product } from "../types";
 
 const TypePage = () => {
   const { type = "" } = useParams<{ type?: string }>();

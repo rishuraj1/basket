@@ -8,20 +8,7 @@ import {
   Skeleton,
   Link,
 } from "@chakra-ui/react";
-
-interface Product {
-  id: number;
-  type: string;
-  original_price: number;
-  discounted_price: number;
-  availability: string;
-  title: string;
-  description?: string;
-  main_image: string;
-  other_images: string[];
-  offer?: string;
-  new_arrival?: boolean;
-}
+import { Product } from "../types";
 
 interface ProductCardProps {
   data: Product;
