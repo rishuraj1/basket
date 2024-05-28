@@ -40,13 +40,10 @@ const HeroSection = ({ isLoading }: { isLoading: boolean }) => {
           src={images[currentIndex]}
           alt={`carousel-${currentIndex}`}
           borderRadius="md"
-          width="100%"
-          height="100%"
-          objectFit={"fill"}
-          transition="opacity 0.5s ease-in-out"
-          opacity={0.9}
           _hover={{ opacity: 1 }}
           animation={`slide 1s ease-in-out infinite`}
+          objectFit="cover"
+          width="100%"
         />
         <IconButton
           icon={<ChevronLeftIcon />}

@@ -14,6 +14,7 @@ const products = [
       "https://images.pexels.com/photos/942872/pexels-photo-942872.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       "https://images.pexels.com/photos/998589/pexels-photo-998589.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     ],
+    rating: 4.5,
   },
   {
     id: 2,
@@ -31,6 +32,7 @@ const products = [
       "https://images.pexels.com/photos/1181657/pexels-photo-1181657.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     ],
     offer: "25% Off",
+    rating: 4.0,
   },
   {
     id: 3,
@@ -81,6 +83,7 @@ const products = [
       "https://images.pexels.com/photos/5797900/pexels-photo-5797900.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       "https://images.pexels.com/photos/9429448/pexels-photo-9429448.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     ],
+    rating: 4.8,
   },
   {
     id: 6,
@@ -97,6 +100,8 @@ const products = [
       "https://images.pexels.com/photos/823841/pexels-photo-823841.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       "https://images.pexels.com/photos/2168382/pexels-photo-2168382.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     ],
+    offer: "20% Off",
+    rating: 4.5,
   },
   {
     id: 7,
@@ -114,6 +119,7 @@ const products = [
       "https://images.pexels.com/photos/8805075/pexels-photo-8805075.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     ],
     offer: "10% Off",
+    rating: 4.2,
   },
   {
     id: 8,
@@ -130,6 +136,7 @@ const products = [
       "https://images.pexels.com/photos/2529157/pexels-photo-2529157.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       "https://images.pexels.com/photos/1102777/pexels-photo-1102777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     ],
+    rating: 4.7,
   },
   {
     id: 9,
@@ -178,6 +185,7 @@ const products = [
       "https://images.pexels.com/photos/7936636/pexels-photo-7936636.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       "https://images.pexels.com/photos/5825406/pexels-photo-5825406.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     ],
+    rating: 4.3,
   },
   {
     id: 12,
@@ -226,6 +234,7 @@ const products = [
       "https://images.unsplash.com/photo-1631098983935-5363b8e50edb?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "https://images.unsplash.com/photo-1605773527852-c546a8584ea3?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
+    rating: 4.6,
   },
   {
     id: 15,
@@ -274,6 +283,7 @@ const products = [
       "https://images.unsplash.com/photo-1603234408844-15d80c40d580?q=80&w=1905&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "https://images.unsplash.com/photo-1596213812335-ac67c2d653d4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     ],
+    rating: 4.4,
   },
   {
     id: 18,

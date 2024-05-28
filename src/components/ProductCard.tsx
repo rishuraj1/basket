@@ -26,6 +26,7 @@ const ProductCard = ({ data, isLoading = false }: ProductCardProps) => {
     main_image,
     new_arrival,
     offer,
+    rating,
   } = data;
 
   return (
@@ -46,14 +47,18 @@ const ProductCard = ({ data, isLoading = false }: ProductCardProps) => {
       display={"flex"}
     >
       {new_arrival && (
-        <Badge colorScheme="blue" mb={2}>
-          New Arrival
-        </Badge>
+        <Skeleton isLoaded={!isLoading}>
+          <Badge colorScheme="blue" mb={2}>
+            New Arrival
+          </Badge>
+        </Skeleton>
       )}
       {offer && (
-        <Badge colorScheme="purple" mb={2}>
-          {offer}
-        </Badge>
+        <Skeleton isLoaded={!isLoading}>
+          <Badge colorScheme="purple" mb={2}>
+            {offer}
+          </Badge>
+        </Skeleton>
       )}
       <Skeleton isLoaded={!isLoading}>
         <Image
@@ -72,12 +77,18 @@ const ProductCard = ({ data, isLoading = false }: ProductCardProps) => {
         <Text fontSize="sm" color="gray.500" mb={4}>
           <Skeleton isLoaded={!isLoading}>{type}</Skeleton>
         </Text>
-        <Badge
-          colorScheme={availability === "In Stock" ? "green" : "red"}
-          mb={4}
-        >
-          <Skeleton isLoaded={!isLoading}>{availability}</Skeleton>
-        </Badge>
+
+        <Flex justifyContent="center" mb={4}>
+          <Badge colorScheme={availability === "In Stock" ? "green" : "red"}>
+            <Skeleton isLoaded={!isLoading}>{availability}</Skeleton>
+          </Badge>
+          {rating && (
+            <Badge colorScheme="yellow" rounded="md" ml={2}>
+              <Skeleton isLoaded={!isLoading}>{rating} ★</Skeleton>
+            </Badge>
+          )}
+        </Flex>
+
         <Flex justifyContent="center" alignItems="baseline">
           <Text as="s" color="gray.500" mr={2}>
             <Skeleton isLoaded={!isLoading}>

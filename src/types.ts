@@ -10,6 +10,7 @@ export interface Product {
   other_images: string[];
   offer?: string;
   new_arrival?: boolean;
+  rating?: number;
 }
 
 export interface cartItem {

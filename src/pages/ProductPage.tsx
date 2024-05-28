@@ -132,6 +132,18 @@ const ProductPage: React.FC = () => {
                   </Text>
                 </Skeleton>
               </VStack>
+              {product?.rating && (
+                <Skeleton isLoaded={!isLoading}>
+                  <Text as="span" fontWeight="bold">
+                    Rating:{" "}
+                  </Text>
+                  <Badge colorScheme="yellow" rounded="md">
+                    <Skeleton isLoaded={!isLoading}>
+                      {product?.rating} ★
+                    </Skeleton>
+                  </Badge>
+                </Skeleton>
+              )}
               <HStack mt={4} spacing={4}>
                 <ProductImages
                   id={product.id}
